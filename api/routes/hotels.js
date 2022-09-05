@@ -1,5 +1,5 @@
 import express from "express";
-import Hotel from '../models/Hotel.js'
+import Hotel from '../models/Hotel.js';
 
 const router = express.Router();
 
@@ -43,13 +43,9 @@ router.get("/:id", async(req, res) => {
 });
 //GET_ALL
 router.get("/", async(req, res, next) => {
-    const failed = true
-    const err = new Error()
-    err.status = 404;
-    err.message = "Sorry not found!";
-    if (failed) return next(err);
+
     try {
-        const hotels = await Hotel.findById("asdsdas");
+        const hotels = await Hotel.find();
         res.status(200).json(hotels);
     } catch (err) {
         next(err)
